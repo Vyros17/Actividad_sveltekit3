@@ -1,10 +1,9 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     export let data;
-    import { del } from "$lib/utils";
 </script>
 
-<div class="flex flex-col items-center justify-center min-h-screen bg-pink-200">
+<div class="flex flex-col items-center justify-center min-h-screen bg-cyan-200">
     <h1 class="text-4xl">
         Actividad de
         <span class="text-orange-500 text-5xl">SvelteKit</span>
@@ -25,7 +24,7 @@
         <thead class="bg-gray-200">
             <tr>
                 <th class="px-4 py-2">Nombre</th>
-                <th class="px-4 py-2">Apellido</th>
+                <th class="px-4 py-2">Usuario</th>
                 <th class="px-4 py-2">Email</th>
                 <th class="px-4 py-2">Modificar</th>
                 <th class="px-4 py-2">Eliminar</th>
@@ -38,7 +37,7 @@
                         >{d["name"] ?? "No definido"}</td
                     >
                     <td class="px-4 py-2 text-center"
-                        >{d["lastName"] ?? "No definido"}</td
+                        >{d["username"] ?? "No definido"}</td
                     >
                     <td class="px-4 py-2 text-center"
                         >{d["email"] ?? "No definido"}</td
@@ -46,7 +45,7 @@
                     <td class="px-4 py-2 text-center">
                         <button
                             on:click={() => {
-                                goto(`update/${d.id}`);
+                                goto(`update?id=${d.id}`);
                             }}
                             class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition cursor-pointer"
                         >
@@ -54,12 +53,15 @@
                         </button>
                     </td>
                     <td class="px-4 py-2 text-center">
-                        <button
-                            on:click={() => del(d.id, data)}
-                            class="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 transition cursor-pointer"
-                        >
-                            Eliminar
-                        </button>
+                        <form action={`?/delete`} method="post">
+                            <input type="hidden" name="id" value={d["id"]}>
+                            <button
+                                type="submit"
+                                class="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 transition cursor-pointer"
+                            >
+                                Eliminar
+                            </button>
+                        </form>
                     </td>
                 </tr>
             {/each}

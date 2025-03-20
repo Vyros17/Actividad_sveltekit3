@@ -1,0 +1,11 @@
+{
+	"/": [
+		"src/routes/+page.server.ts"
+	],
+	"/add": [
+		"src/routes/add/+page.server.ts"
+	],
+	"/update": [
+		"src/routes/update/+page.server.ts"
+	]
+}
