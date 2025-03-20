@@ -55,7 +55,7 @@
         ERROR
     </div>
     <div>
-        La tarea no se ha logrado completar.
+        La tarea no se logró completar.
     </div>
 </div>
 {/if}
